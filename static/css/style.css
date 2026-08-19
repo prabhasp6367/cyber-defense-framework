@@ -1,0 +1,301 @@
+/* AI Cyber Defense Framework - Main Stylesheet */
+
+:root {
+    --primary: #dc3545;
+    --secondary: #1e1e2e;
+    --dark: #0f0f1e;
+    --info: #00d4ff;
+    --success: #00ff88;
+    --warning: #ffaa00;
+    --danger: #ff3333;
+}
+
+body {
+    background-color: var(--secondary);
+    color: #e0e0e0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ff5563;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+    box-shadow: 2px 0 10px rgba(220, 53, 69, 0.2);
+}
+
+.sidebar .nav-link {
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+    padding: 0.75rem 1rem;
+}
+
+.sidebar .nav-link:hover {
+    background: rgba(220, 53, 69, 0.2);
+    transform: translateX(5px);
+}
+
+.sidebar .nav-link.active {
+    background: rgba(220, 53, 69, 0.3);
+    border-left: 3px solid var(--primary);
+}
+
+/* Cards */
+.stat-card {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+}
+
+.feature-card {
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    border-color: currentColor !important;
+}
+
+/* Badges */
+.badge {
+    padding: 0.35rem 0.65rem;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.badge-critical {
+    background: #ff3333;
+}
+
+.badge-high {
+    background: #ffaa00;
+}
+
+.badge-medium {
+    background: #ffdd00;
+    color: #000;
+}
+
+.badge-low {
+    background: #00ff88;
+    color: #000;
+}
+
+/* Tables */
+.table-dark tbody tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.2s ease;
+}
+
+.table-dark tbody tr:hover {
+    background: rgba(0, 212, 255, 0.1);
+}
+
+/* Forms */
+.form-control {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(220, 53, 69, 0.3);
+    color: white;
+}
+
+.form-control::placeholder {
+    color: #6c757d;
+}
+
+.form-control:focus {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--primary);
+    color: white;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+/* Buttons */
+.btn-outline-info:hover {
+    background: var(--info);
+    border-color: var(--info);
+    color: #000;
+}
+
+.btn-outline-success:hover {
+    background: var(--success);
+    border-color: var(--success);
+    color: #000;
+}
+
+/* Alert Badges */
+.alert-badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.alert-badge.critical {
+    background: rgba(255, 51, 51, 0.3);
+    color: #ff3333;
+}
+
+.alert-badge.high {
+    background: rgba(255, 170, 0, 0.3);
+    color: #ffaa00;
+}
+
+.alert-badge.medium {
+    background: rgba(255, 221, 0, 0.3);
+    color: #ffdd00;
+}
+
+.alert-badge.low {
+    background: rgba(0, 255, 136, 0.3);
+    color: #00ff88;
+}
+
+/* Severity Indicator */
+.severity-critical {
+    color: #ff3333;
+}
+
+.severity-high {
+    color: #ffaa00;
+}
+
+.severity-medium {
+    color: #ffdd00;
+}
+
+.severity-low {
+    color: #00ff88;
+}
+
+/* Status Pills */
+.status-pill {
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.status-open {
+    background: rgba(255, 51, 51, 0.2);
+    color: #ff3333;
+}
+
+.status-investigating {
+    background: rgba(255, 170, 0, 0.2);
+    color: #ffaa00;
+}
+
+.status-resolved {
+    background: rgba(0, 255, 136, 0.2);
+    color: #00ff88;
+}
+
+/* Loading Spinner */
+.spinner-border-sm {
+    width: 1rem;
+    height: 1rem;
+    border-width: 0.2em;
+}
+
+/* Chart Container */
+.chart-container {
+    position: relative;
+    height: 300px;
+    margin-bottom: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+    }
+    
+    .sidebar .nav-link {
+        display: inline-block;
+        width: 48%;
+        margin-right: 2%;
+    }
+}
+
+/* Animations */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-in {
+    animation: slideIn 0.3s ease-out;
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+/* Threat Indicator */
+.threat-indicator {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
+
+.threat-indicator.critical {
+    background: #ff3333;
+    box-shadow: 0 0 10px #ff3333;
+}
+
+.threat-indicator.high {
+    background: #ffaa00;
+    box-shadow: 0 0 8px #ffaa00;
+}
+
+.threat-indicator.medium {
+    background: #ffdd00;
+}
+
+.threat-indicator.low {
+    background: #00ff88;
+}
+
+.threat-indicator.normal {
+    background: #6c757d;
+}
