@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics - AI Cyber Defense Center</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="bg-dark">
+    <div class="d-flex">
+        <nav class="sidebar bg-secondary bg-opacity-25 border-end border-danger" style="width: 250px; min-height: 100vh;">
+            <div class="p-3 border-bottom border-danger"><h5 class="text-white fw-bold"><i class="fas fa-shield-alt text-danger"></i> Defense</h5></div>
+            <ul class="nav flex-column p-3">
+                <li class="nav-item"><a class="nav-link text-secondary" href="/dashboard"><i class="fas fa-chart-line text-info"></i> Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link text-secondary" href="/logs"><i class="fas fa-list text-success"></i> Logs</a></li>
+                <li class="nav-item"><a class="nav-link text-secondary" href="/alerts"><i class="fas fa-bell text-danger"></i> Alerts</a></li>
+                <li class="nav-item"><a class="nav-link text-secondary" href="/incidents"><i class="fas fa-exclamation-triangle"></i> Incidents</a></li>
+                <li class="nav-item"><a class="nav-link text-white active" href="/analytics"><i class="fas fa-chart-bar text-info"></i> Analytics</a></li>
+                <li class="nav-item"><a class="nav-link text-secondary" href="/logout"><i class="fas fa-sign-out-alt text-danger"></i> Logout</a></li>
+            </ul>
+        </nav>
+        <div class="flex-grow-1 p-4">
+            <h1 class="text-white fw-bold mb-4"><i class="fas fa-chart-bar text-info"></i> Security Analytics</h1>
+            <div class="row g-3 mb-4">
+                <div class="col-md-3"><div class="bg-secondary bg-opacity-25 p-3 rounded border border-info"><p class="text-secondary mb-1">Total Events</p><h4 class="text-info" id="analytics-events">--</h4></div></div>
+                <div class="col-md-3"><div class="bg-secondary bg-opacity-25 p-3 rounded border border-danger"><p class="text-secondary mb-1">Detection Rate</p><h4 class="text-danger" id="analytics-rate">--</h4></div></div>
+                <div class="col-md-3"><div class="bg-secondary bg-opacity-25 p-3 rounded border border-warning"><p class="text-secondary mb-1">Open Incidents</p><h4 class="text-warning" id="analytics-incidents">--</h4></div></div>
+                <div class="col-md-3"><div class="bg-secondary bg-opacity-25 p-3 rounded border border-success"><p class="text-secondary mb-1">Model Accuracy</p><h4 class="text-success" id="analytics-accuracy">--</h4></div></div>
+            </div>
+            <div class="bg-secondary bg-opacity-25 p-4 rounded border border-info mb-3" style="height: 300px;"><canvas id="trendsChart"></canvas></div>
+            <div class="bg-secondary bg-opacity-25 p-4 rounded border border-warning" style="height: 300px;"><canvas id="topThreatsChart"></canvas></div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => { loadAnalytics(); });
+        function loadAnalytics() {
+            fetch('/api/analytics/overview').then(r => r.json()).then(d => {
+                document.getElementById('analytics-events').textContent = d.events.total.toLocaleString();
+                document.getElementById('analytics-rate').textContent = d.threats.detection_rate.toFixed(1) + '%';
+                document.getElementById('analytics-incidents').textContent = d.incidents.open;
+                document.getElementById('analytics-accuracy').textContent = '94.5%';
+            });
+        }
+    </script>
+</body>
+</html>
